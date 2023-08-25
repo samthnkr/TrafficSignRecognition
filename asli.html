@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><button onclick="get()">Get</button>
+    <div id="photo">
+        
+    </div>
+    <div id="username"></div>
+    <img id="ph" src="" alt="">
+    <button id="bt" onclick="">gg</button>
+
+
+
+
+
+
+
+    
+</body>
+
+<script>
+    async function get() {
+  let myObject = await fetch('https://randomuser.me/api/');
+  let myText = await myObject.json();
+
+
+  document.getElementById("photo").innerHTML = myText.results[0].gender;
+  document.getElementById("username").innerHTML = myText.results[0].name.title + " " + myText.results[0].name.first + " " + myText.results[0].name.last;
+  document.getElementById("ph").src = "myText.results[0].picture.large";
+  document.getElementById("ph").alt = "error";
+  
+    }
+</script>
+
+</html>
