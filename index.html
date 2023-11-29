@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Dimension Predictor</title>
+</head>
+<body>
+    <h1>Image Dimension Predictor</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Predict Traffic-Sign">
+    </form>
+    <p>Image Dimension: <span id="dimension"></span></p>
+
+    <script>
+        const form = document.querySelector('form');
+        const dimensionSpan = document.getElementById('dimension');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const formData = new FormData(form);
+            const response = await fetch('http://127.0.0.1:8000/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+            dimensionSpan.textContent = data.dimension;
+        });
+    </script>
+</body>
+</html>
